@@ -9,7 +9,7 @@ function crearArchivo(){
   const contenidoArchivo = document.querySelector("#editarTexto").value
   const url = 'http://localhost:3000/guardarArchivo';
   const data ={
-      title: nombreArchivo + ".md",
+      title: nombreArchivo,
       content: contenidoArchivo,
   }
   console.log(data);
@@ -18,6 +18,7 @@ function crearArchivo(){
       headers : {'Content-Type':'aplication/json'},
       body : JSON.stringify(data),
   }
-  console.log(request);
+  console.log(url)
+  console.log(request)
   fetch(url,request);
 }

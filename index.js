@@ -2,6 +2,8 @@ const fs = require('fs')
 const path = require('path')
 const express = require('express')
 const bp = require('body-parser')
+const { request } = require('https');
+const { response } = require('express');
 const MarkdownIt = require('markdown-it'),
     md = new MarkdownIt();//servira para traducir markdown a html
 const app = express()
@@ -25,4 +27,19 @@ app.listen(3000, () => {
 
 app.get('/', (request, response) => {
     response.sendFile(path.resolve(__dirname, 'index.html'))
+})
+
+app.post('/guardarArchivo', (request, response) => {
+    let tituloArchivo = request.body.title + '.md';
+    let contenidoArchivo = request.body.content;
+    console.log(tituloArchivo)
+    console.log(contenidoArchivo)
+    fs.writeFile(path.resolve(__dirname + 'priv/' + tituloArchivo), contenidoArchivo, function (err) {
+        if (err) {
+            console.log('Algo salio mal');
+            console.log(err);
+            return
+        }
+        console.log('Guardado exitosamente');
+    });
 })
