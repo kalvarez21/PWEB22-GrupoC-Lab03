@@ -6,6 +6,13 @@ const MarkdownIt = require('markdown-it'),
     md = new MarkdownIt();//servira para traducir markdown a html
 const app = express()
 
+/*
+  Paquetes necesarios:
+  npm install body-parser
+  npm install markdown-it --save
+  npm install express
+*/
+
 app.use(express.static('pub'))
 app.use(bp.json())
 app.use(bp.urlencoded({
