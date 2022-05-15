@@ -12,13 +12,10 @@ function crearArchivo(){
       title: nombreArchivo,
       content: contenidoArchivo,
   }
-  console.log(data);
   const request = {
       method: 'POST',
       headers : {'Content-Type':'aplication/json'},
       body : JSON.stringify(data),
   }
-  console.log(url)
-  console.log(request)
-  fetch(url,request);
+  fetch(url , request);
 }
