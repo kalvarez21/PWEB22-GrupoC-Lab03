@@ -5,8 +5,17 @@ function nuevoArchivo(){
   document.querySelector(".main").innerHTML= html;
 }
 function crearArchivo(){
-  const nombreArchivo = document.querySelector("#nuevoTitulo")
-  const contenidoArchivo = document.querySelector("#editarTexto")
-  console.log(nombreArchivo)
-  console.log(contenidoArchivo)
+  const nombreArchivo = document.querySelector("#nuevoTitulo").value
+  const contenidoArchivo = document.querySelector("#editarTexto").value
+  const url = 'http://localhost:3000/guardarArchivo';
+  const data={
+      title: fileName + ".md",
+      content: fileContent,
+  }
+  const request = {
+      method: 'POST',
+      headers : {'Content-Type':'aplication/json'},
+      body : JSON.stringify(data),
+  }
+  fetch(url,request);
 }
