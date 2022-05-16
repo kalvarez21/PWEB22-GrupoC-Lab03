@@ -18,6 +18,9 @@ function crearArchivo(){
       body : JSON.stringify(data),
   }
   fetch(url , request);
+  let html = '<textarea id="verTexto" rows="8" cols="80" disabled></textarea><br>' +
+             '<div class="mostrarHtml"></div>';
+  document.querySelector('.main').innerHTML = html;
   mostrarLista();
 }
 function mostrarLista(){
