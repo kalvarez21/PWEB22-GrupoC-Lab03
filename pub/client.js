@@ -4,6 +4,7 @@ function nuevoArchivo(){
              '<input type="button" id="crearArchivo" value="Crear Archivo" onclick="crearArchivo()">'
   document.querySelector(".main").innerHTML= html;
 }
+
 function crearArchivo(){
   const nombreArchivo = document.querySelector("#nuevoTitulo").value
   const contenidoArchivo = document.querySelector("#editarTexto").value
@@ -56,7 +57,7 @@ function mostrarArchivo(file){
   }
   fetch(url,request)
   .then(response => response.json()
-).then(data => {
+  ).then(data => {
       console.log(data);
       document.querySelector('.mostrarHtml').innerHTML = data.htmlText;
       document.querySelector('#verTexto').value = data.markDownText;
