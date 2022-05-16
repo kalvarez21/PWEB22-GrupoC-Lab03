@@ -1,3 +1,4 @@
+//Muestra formulario para crear nuevo archivo
 function nuevoArchivo(){
   let html = '<input type="text" id="nuevoTitulo" placeholder="Ingrese un titulo para el texto">' +
              '<textarea id="editarTexto" rows="8" cols="80"></textarea><br>'+
@@ -5,64 +6,71 @@ function nuevoArchivo(){
   document.querySelector(".main").innerHTML= html;
 }
 
+//Envia los datos para Crea un archivo nuevo
 function crearArchivo(){
-  const nombreArchivo = document.querySelector("#nuevoTitulo").value
-  const contenidoArchivo = document.querySelector("#editarTexto").value
+  const nombreArchivo = document.querySelector("#nuevoTitulo").value //extrae el titulo del archivo
+  const contenidoArchivo = document.querySelector("#editarTexto").value//extrae el contenido del archivo
   const url = 'http://localhost:3000/guardarArchivo';
-  const data ={
+  const data ={ //almacena los valores de titulo y contenido
       title: nombreArchivo,
       content: contenidoArchivo,
   }
-  const request = {
-      method : 'POST',
+  const request = { //objeto enviado al servidor
+      method : 'POST', //tipo de metodo : POST
       headers : {'Content-Type':'application/json'},
-      body : JSON.stringify(data),
+      body : JSON.stringify(data),//serializa el objeto data
   }
   fetch(url , request);
   let html = '<textarea id="verTexto" rows="8" cols="80" disabled></textarea><br>' +
              '<div class="mostrarHtml"></div>';
-  document.querySelector('.main').innerHTML = html;
-  mostrarLista();
+  document.querySelector('.main').innerHTML = html;//muestra un area de texto para observar el contenido del archivo en markdown
+  mostrarLista();//actualiza la lista de archivos
 }
+
+//Pide al servidor el nombre de los archivos creados
 function mostrarLista(){
   const url = 'http://localhost:3000/mostrarLista';
   fetch(url)
-  .then((response) => response.json())
-  .then((data) => {
-      document.querySelector('#listadoArchivos').innerHTML = formatoLista(data);
+  .then((response) => response.json()) //El response lo vuelve JSON
+  .then((data) => {//data contiene el nombre de los archivos como array
+      document.querySelector('#listadoArchivos').innerHTML = formatoLista(data);//el array data lo envia a formatoLista
   });
 }
+
+//Da formato de lista html a los elementos de data
 function formatoLista(data){
   let html = "<ul><br>";
   console.log(data[0]);
   for(let i = 0 ; i < data.length ; i++){
-    let nombreArchivo = data[i].substring(0, data[i].length - 3);
+    let nombreArchivo = data[i].substring(0, data[i].length - 3);//extrae los 3 ultimos caracteres (Extension del archivo ".md")
     console.log(typeof nombreArchivo);
-    html += `<li onclick="mostrarArchivo('${nombreArchivo}')">${nombreArchivo}</li><br>`;
+    html += `<li onclick="mostrarArchivo('${nombreArchivo}')">${nombreArchivo}</li><br>`;//da formato lista y añade el atributo onclick
   }
   html += "</ul>"
   console.log(html);
   return html;
 }
+
+//Pide al servidor el contenido del archivo seleccionado
 function mostrarArchivo(file){
   let titulo = file;
   const url = 'http://localhost:3000/leerArchivo';
-  const data = {
+  const data = {//almacena el titulo del archivo
       title: titulo
   }
   const request = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(data),
+      body: JSON.stringify(data),//serializa el objeto data
   }
-  fetch(url,request)
-  .then(response => response.json()
-  ).then(data => {
+  fetch(url,request).then(response => response.json())
+  .then(data => {
       console.log(data);
-      document.querySelector('.mostrarHtml').innerHTML = data.htmlText;
-      document.querySelector('#verTexto').value = data.markDownText;
+      document.querySelector('.mostrarHtml').innerHTML = data.htmlText;//extrae el contenido en html y lo muestra en el div mostrarHtml
+      document.querySelector('#verTexto').value = data.markDownText;//extrae el contenido en markdown y lo muestra en el area de texto
     })
 }
+//Cuando se carga el documento recien muestra el listado de archivos
 document.addEventListener("DOMContentLoaded", function(){
     mostrarLista();
 })
