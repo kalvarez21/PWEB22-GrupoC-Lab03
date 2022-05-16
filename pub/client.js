@@ -37,11 +37,30 @@ function formatoLista(data){
   for(let i = 0 ; i < data.length ; i++){
     let nombreArchivo = data[i].substring(0, data[i].length - 3);
     console.log(typeof nombreArchivo);
-    html += `<li onclick="mostrarArchivo(${nombreArchivo})">${nombreArchivo}</li><br>`;
+    html += `<li onclick="mostrarArchivo('${nombreArchivo}')">${nombreArchivo}</li><br>`;
   }
   html += "</ul>"
   console.log(html);
   return html;
+}
+function mostrarArchivo(file){
+  let titulo = file;
+  const url = 'http://localhost:3000/leerArchivo';
+  const data = {
+      title: titulo
+  }
+  const request = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data),
+  }
+  fetch(url,request)
+  .then(response => response.json()
+).then(data => {
+      console.log(data);
+      document.querySelector('.mostrarHtml').innerHTML = data.htmlText;
+      document.querySelector('#verTexto').value = data.markDownText;
+    })
 }
 document.addEventListener("DOMContentLoaded", function(){
     mostrarLista();

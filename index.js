@@ -52,3 +52,20 @@ app.get('/mostrarLista', (request, response) => {
         response.json(files);
     })
 })
+app.post('/leerArchivo', (request, response) =>{
+    let titulo = request.body.title + ".md";
+    fs.readFile(path.resolve(__dirname, 'priv/'+ titulo), 'utf8', (err, file) =>{
+        if (err){
+        console.log('Algo salio mal');
+        console.log(err);
+        return;
+        }
+        response.setHeader("Content.-Type","application/json");
+        response.end(
+        JSON.stringify({
+            markDownText: file,
+            htmlText: md.render(file),
+        })
+        );
+    });
+})
