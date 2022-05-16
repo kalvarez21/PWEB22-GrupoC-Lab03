@@ -44,7 +44,7 @@ function formatoLista(data){
   for(let i = 0 ; i < data.length ; i++){
     let nombreArchivo = data[i].substring(0, data[i].length - 3);//extrae los 3 ultimos caracteres (Extension del archivo ".md")
     console.log(typeof nombreArchivo);
-    html += `<li onclick="mostrarArchivo('${nombreArchivo}')">${nombreArchivo}</li><br>`;//da formato lista y añade el atributo onclick
+    html += `<li onclick="mostrarArchivo('${nombreArchivo}')">${nombreArchivo}</li>`;//da formato lista y añade el atributo onclick
   }
   html += "</ul>"
   console.log(html);

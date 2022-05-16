@@ -7,15 +7,25 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <header>
+      <h2>Navegador de archivos markdown</h2>
+    </header>
     <div class="container">
       <section class="listaArchivos">
+        <h2>Lista de Archivos</h2>
         <div id="listadoArchivos"></div>
         <input type="button" id="nuevoArchivo" value="Archivo Nuevo" onclick="nuevoArchivo()">
       </section>
       <section class="main">
+        <h2>Contenido en Markdown</h2>
         <textarea id="verTexto" rows="8" cols="80" disabled></textarea>
+        <h2>Contenido en HTML</h2>
         <div class="mostrarHtml"></div>
       </section>
     </div>
+    <footer>
+      <p>Kevin Alvarez Astete</p>
+      <p>github: <a href="https://github.com/kalvarez21">kalvarez21</a></p>
+    </footer>
   </body>
 </html>
