@@ -25,8 +25,20 @@ function mostrarLista(){
   fetch(url)
   .then((response) => response.json())
   .then((data) => {
-      console.log(data);
+      document.querySelector('#listadoArchivos').innerHTML = formatoLista(data);
   });
+}
+function formatoLista(data){
+  let html = "<ul><br>";
+  console.log(data[0]);
+  for(let i = 0 ; i < data.length ; i++){
+    let nombreArchivo = data[i].substring(0, data[i].length - 3);
+    console.log(typeof nombreArchivo);
+    html += `<li onclick="mostrarArchivo(${nombreArchivo})">${nombreArchivo}</li><br>`;
+  }
+  html += "</ul>"
+  console.log(html);
+  return html;
 }
 document.addEventListener("DOMContentLoaded", function(){
     mostrarLista();
