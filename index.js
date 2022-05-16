@@ -27,12 +27,12 @@ app.get('/', (request, response) => {
     response.sendFile(path.resolve(__dirname, 'index.html'))
 })
 
-app.post('/guardarArchivo', (request, response) => {
+  app.post('/guardarArchivo', (request, response) => {
     let tituloArchivo = request.body.title + '.md';
     let contenidoArchivo = request.body.content;
     console.log(tituloArchivo);
     console.log(contenidoArchivo);
-    fs.writeFile(path.resolve(__dirname + 'priv/' + tituloArchivo), contenidoArchivo, function (err) {
+    fs.writeFile(path.resolve(__dirname ,'priv/' , tituloArchivo), contenidoArchivo, function (err) {
         if (err) {
             console.log('Ocurrio un error');
             console.log(err);
@@ -40,4 +40,15 @@ app.post('/guardarArchivo', (request, response) => {
         }
         console.log('Guardado exitosamente');
     });
+})
+app.get('/mostrarLista', (request, response) => {
+    console.log(__dirname);
+    fs.readdir(path.resolve(__dirname, 'priv'), 'utf8', (err, files) => {
+        if (err) {
+            console.log('Algo salio mal')
+            console.log(err)
+            return;
+        }
+        response.json(files);
+    })
 })

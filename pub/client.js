@@ -13,9 +13,21 @@ function crearArchivo(){
       content: contenidoArchivo,
   }
   const request = {
-      method: 'POST',
-      headers : {'Content-Type':'aplication/json'},
+      method : 'POST',
+      headers : {'Content-Type':'application/json'},
       body : JSON.stringify(data),
   }
   fetch(url , request);
+  mostrarLista();
 }
+function mostrarLista(){
+  const url = 'http://localhost:3000/mostrarLista';
+  fetch(url)
+  .then((response) => response.json())
+  .then((data) => {
+      console.log(data);
+  });
+}
+document.addEventListener("DOMContentLoaded", function(){
+    mostrarLista();
+})
