@@ -4,15 +4,18 @@
     <meta charset="utf-8">
     <title>Lista de archivos Markdown</title>
     <script src="client.js"></script>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <section class="listaArchivos">
-      <div id="listadoArchivos"></div>
-      <input type="button" id="nuevoArchivo" value="Archivo Nuevo" onclick="nuevoArchivo()">
-    </section>
-    <section class="main">
-      <textarea id="verTexto" rows="8" cols="80" disabled></textarea>
-      <div class="mostrarHtml"></div>
-    </section>
+    <div class="container">
+      <section class="listaArchivos">
+        <div id="listadoArchivos"></div>
+        <input type="button" id="nuevoArchivo" value="Archivo Nuevo" onclick="nuevoArchivo()">
+      </section>
+      <section class="main">
+        <textarea id="verTexto" rows="8" cols="80" disabled></textarea>
+        <div class="mostrarHtml"></div>
+      </section>
+    </div>
   </body>
 </html>
