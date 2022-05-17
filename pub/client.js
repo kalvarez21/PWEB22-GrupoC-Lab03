@@ -1,6 +1,6 @@
 //Muestra formulario para crear nuevo archivo
 function nuevoArchivo(){
-  let html = '<input type="text" id="nuevoTitulo" placeholder="Ingrese un titulo para el texto"><br>' +
+  let html = '<input type="text" id="nuevoTitulo" placeholder="Ingrese un titulo para el archivo"><br>' +
              '<textarea id="editarTexto" rows="8" cols="80"></textarea><br>'+
              '<input type="button" id="crearArchivo" value="Crear Archivo" onclick="crearArchivo()">'+
              '<input type="button" id="cancelar" value="Cancelar" onclick="cancelarCrear()">'
