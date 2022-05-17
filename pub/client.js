@@ -1,8 +1,9 @@
 //Muestra formulario para crear nuevo archivo
 function nuevoArchivo(){
-  let html = '<input type="text" id="nuevoTitulo" placeholder="Ingrese un titulo para el texto">' +
+  let html = '<input type="text" id="nuevoTitulo" placeholder="Ingrese un titulo para el texto"><br>' +
              '<textarea id="editarTexto" rows="8" cols="80"></textarea><br>'+
-             '<input type="button" id="crearArchivo" value="Crear Archivo" onclick="crearArchivo()">'
+             '<input type="button" id="crearArchivo" value="Crear Archivo" onclick="crearArchivo()">'+
+             '<input type="button" id="cancelar" value="Cancelar" onclick="cancelarCrear()">'
   document.querySelector(".main").innerHTML= html;
 }
 
@@ -25,6 +26,10 @@ function crearArchivo(){
              '<div class="mostrarHtml"></div>';
   document.querySelector('.main').innerHTML = html;//muestra un area de texto para observar el contenido del archivo en markdown
   mostrarLista();//actualiza la lista de archivos
+}
+
+function cancelarCrear () { //permite cancelar la creacion de un archivo mostrando el formulario que muestra el contenido de un archivo
+    document.querySelector(".main").innerHTML= htmlVerTexto;
 }
 
 //Pide al servidor el nombre de los archivos creados
@@ -66,11 +71,15 @@ function mostrarArchivo(file){
   fetch(url,request).then(response => response.json())
   .then(data => {
       console.log(data);
+      if(document.querySelector('.mostrarHtml') == null)//En caso de que no exista ese tag con la clase .mostrarHtml
+        document.querySelector(".main").innerHTML= htmlVerTexto;//reemplaza el formulario por aquel que permite mostrar contenido de archivos
       document.querySelector('.mostrarHtml').innerHTML = data.htmlText;//extrae el contenido en html y lo muestra en el div mostrarHtml
       document.querySelector('#verTexto').value = data.markDownText;//extrae el contenido en markdown y lo muestra en el area de texto
     })
 }
+let htmlVerTexto //guardar el formato html para ver textos
 //Cuando se carga el documento recien muestra el listado de archivos
 document.addEventListener("DOMContentLoaded", function(){
     mostrarLista();
+    htmlVerTexto = document.querySelector(".main").innerHTML;
 })
