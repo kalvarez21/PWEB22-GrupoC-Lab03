@@ -45,14 +45,11 @@ function mostrarLista(){
 //Da formato de lista html a los elementos de data
 function formatoLista(data){
   let html = "<ul><br>";
-  console.log(data[0]);
   for(let i = 0 ; i < data.length ; i++){
     let nombreArchivo = data[i].substring(0, data[i].length - 3);//extrae los 3 ultimos caracteres (Extension del archivo ".md")
-    console.log(typeof nombreArchivo);
     html += `<li onclick="mostrarArchivo('${nombreArchivo}')">${nombreArchivo}</li>`;//da formato lista y añade el atributo onclick
   }
   html += "</ul>"
-  console.log(html);
   return html;
 }
 
@@ -70,7 +67,6 @@ function mostrarArchivo(file){
   }
   fetch(url,request).then(response => response.json())
   .then(data => {
-      console.log(data);
       if(document.querySelector('.mostrarHtml') == null)//En caso de que no exista ese tag con la clase .mostrarHtml
         document.querySelector(".main").innerHTML= htmlVerTexto;//reemplaza el formulario por aquel que permite mostrar contenido de archivos
       document.querySelector('.mostrarHtml').innerHTML = data.htmlText;//extrae el contenido en html y lo muestra en el div mostrarHtml

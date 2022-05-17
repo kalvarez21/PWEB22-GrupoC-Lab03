@@ -31,8 +31,6 @@ app.get('/', (request, response) => {
 app.post('/guardarArchivo', (request, response) => {
     let tituloArchivo = request.body.title + '.md';//extrae del JSON request el titulo del archivo
     let contenidoArchivo = request.body.content;//extrae del JSON request el contenido del archivo
-    console.log(tituloArchivo);
-    console.log(contenidoArchivo);
     //Crea un archivo y le asigna el titulo y archivo correspondiente
     fs.writeFile(path.resolve(__dirname ,'priv/' , tituloArchivo), contenidoArchivo, function (err) {
         if (err) {
@@ -46,7 +44,6 @@ app.post('/guardarArchivo', (request, response) => {
 
 //Responde a la peticion de listados de archivos en priv
 app.get('/mostrarLista', (request, response) => {
-    console.log(__dirname);
     //leera el nombre de los archivos del directorio priv y los almacena como array en files
     fs.readdir(path.resolve(__dirname, 'priv'), 'utf8', (err, files) => {
         if (err) {
