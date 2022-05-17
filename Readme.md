@@ -47,21 +47,44 @@
 </tr></tbody></table></div>
    <h1>SOLUCION Y RESULTADOS</h1>
    <h2>I. SOLUCION DE EJERCICIOS/PROBLEMAS</h2>
-   <ul>
-    <li></li>
-   </ul>
+      <ul><li> Durante el diseño de la pagina web se tuvo 2 grandes problemas:</li>
+          <ul><li> El primero consistia en el error 404 debido a que el archivo cliente.js no era recibido con exito por el cliente. Para resolverlo
+              se tuvo que estudiar la linea de codigo "app.use(express.static('pub'))". Llegandose a la conclusion de que el cliente no solo recibia
+              el index.html, sino que tambien era capaz de recibir todos los archivos que se encuentren dentro de la carpeta pub.
+              Es por eso que los archivos client.js y style.css se encuentra ahi.</li><br>
+              <img src="https://i.ibb.co/Kb8nkWm/img01.png">
+              <li> El segundo fue los problemas de conectividad entre los pedidos de client.js al servidor, sin embargo, su solucion fue mas simple, y es que 
+                al final solo resulto ser problemas de tipeo.</li></ul><br>       
+          <li> Ademas, se aprendio que pedidos por metodo GET y POST requieren una forma distinta de asignacion de sus objetos JSON.</li>
+          <li>Para hacer peticiones por metodo GET solo es necesario la url</li><br>
+          <img src="https://i.ibb.co/mFDN6dK/img03.png">
+          <li>Mientras que por el metodo POST se requiere construir el JSON "manualmente" indicando el metodo, el header y serializando el objeto JSON donde
+          estaran los datos enviados</li><br>
+          <img src="https://i.ibb.co/wRYm08f/img04.png"></ul>
+          Nota: Serializar significa volver en string un objeto JSON.
+            
    <h2>II. SOLUCION DE CUESTIONARIO</h2>
    <ul>
-      <li>En el Ejemplo "Hola Mundo" con NodeJS. ¿Qué pasó con la línea: "Content type ….."?</li>
-      <li>En los ejercicios. ¿En qué lugar debería estar el archivo poema.txt</li>
-      <li>¿Entiende la expresión regular en el código y se da cuenta de para qué es útil?</li>
-      <li>Note que la respuesta del servidor está en formato JSON, ¿Habrá alguna forma de verla directamente?</li>
+      <li> En el Ejemplo "Hola Mundo" con NodeJS. ¿Qué pasó con la línea: "Content type ….."?</li>
+          - No se uso porque el cliente puede traducir la respuesta enviada usando una plantilla html predeterminada (es por que el mensaje se muestra dentro 
+            de un tag llamado pre), sin embargo, cuando se usa la linea content type el cliente entendera que queremos ver la respuesta en cierto formato indicado
+            En el caso de usar html pondra el mensaje sin usar tags dentro del body.
+      <li> En los ejercicios. ¿En qué lugar debería estar el archivo poema.txt</li>
+          - Deberia estar en la carpeta priv, tal como se le indica en la direccion que recibe path.resolve
+      <li> ¿Entiende la expresión regular en el código y se da cuenta de para qué es útil?</li>
+          - Reemplaza todos los salto de linea "\n" por la etiqueta "br" de forma que el texto en html se muestre tal como esta en el archivo txt
+      <li> Note que la respuesta del servidor está en formato JSON, ¿Habrá alguna forma de verla directamente?</li>
+          - Se puede utilizar response.send() para enviar cadenas y arrays sin necesidad de usar JSON, de forma que la informacion se muestra directamente
    </ul>
    <h2>III. CONCLUSIONES</h2>
    <ul>
-      <li></li>
-      <li></li>
+      <li>NodeJS resulta una tecnologia muy util para la aplicacion del lenguaje Javascript en el area del backend. Ademas con el uso de paquetes como
+          express facilita aun mas su aplicacion en proyectos.</li>
+      <li>La tecnologia AJAX agiliza mucho la interaccion del cliente con el servidor, evitando asi el cargado de la pagina completa</li>
    </ul>
    <h1>RETROALIMENTACION GENERAL</h1>
    <h1>REFERENCIA Y BIBLIOGRAFIA</h1>
-   <b><i></i></b>
+   <b><i>[1] "Adjuntar codigo js a un html en node.js". Stack Overflow en español. https://es.stackoverflow.com/questions/270750/adjuntar-codigo-js-a-un-html-en-node-js (accedido el 17 de mayo de 2022).</i></b><br>
+   <b><i>[2] "Proper way to return JSON using node or Express". Stack Overflow. https://stackoverflow.com/questions/19696240/proper-way-to-return-json-using-node-or-express (accedido el 17 de mayo de 2022).</i></b><br>
+   <b><i>[3] "Node.js Introduction". W3Schools Online Web Tutorials. https://www.w3schools.com/nodejs/nodejs_intro.asp (accedido el 17 de mayo de 2022).</i></b><br>
+   <b><i>[4] "Express - Infraestructura de aplicaciones web Node.js". Express - Node.js web application framework. https://expressjs.com/es/ (accedido el 17 de mayo de 2022).</i></b>
