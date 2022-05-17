@@ -47,9 +47,22 @@
 </tr></tbody></table></div>
    <h1>SOLUCION Y RESULTADOS</h1>
    <h2>I. SOLUCION DE EJERCICIOS/PROBLEMAS</h2>
-   <ul>
-    <li></li>
-   </ul>
+      <ul><li> Durante el diseño de la pagina web se tuvo 2 grandes problemas:</li>
+          <ul><li> El primero consistia en el error 404 debido a que el archivo cliente.js no era recibido con exito por el cliente. Para resolverlo
+              se tuvo que estudiar la linea de codigo "app.use(express.static('pub'))". Llegandose a la conclusion de que el cliente no solo recibia
+              el index.html, sino que tambien era capaz de recibir todos los archivos que se encuentren dentro de la carpeta pub.
+              Es por eso que los archivos client.js y style.css se encuentra ahi.</li><br>
+              <img src="https://i.ibb.co/Kb8nkWm/img01.png">
+              <li> El segundo fue los problemas de conectividad entre los pedidos de client.js al servidor, sin embargo, su solucion fue mas simple, y es que 
+                al final solo resulto ser problemas de tipeo.</li></ul><br>       
+          <li> Ademas, se aprendio que pedidos por metodo GET y POST requieren una forma distinta de asignacion de sus objetos JSON.</li>
+          <li>Para hacer peticiones por metodo GET solo es necesario la url</li><br>
+          <img src="https://i.ibb.co/mFDN6dK/img03.png">
+          <li>Mientras que por el metodo POST se requiere construir el JSON "manualmente" indicando el metodo, el header y serializando el objeto JSON donde
+          estaran los datos enviados</li><br>
+          <img src="https://i.ibb.co/wRYm08f/img04.png"></ul>
+          Nota: Serializar significa volver en string un objeto JSON.
+            
    <h2>II. SOLUCION DE CUESTIONARIO</h2>
    <ul>
       <li> En el Ejemplo "Hola Mundo" con NodeJS. ¿Qué pasó con la línea: "Content type ….."?</li>
